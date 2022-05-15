@@ -1,3 +1,9 @@
+###
+minificacao
+
+npm install
+
+###
 https://gitlab.com/digitalrepublic/code-challenge
 
 Regras de neg�cio
