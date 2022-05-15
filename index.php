@@ -19,59 +19,85 @@ require 'js/reload.js';
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>    
-    <div class="container">    
-        <div class="title-content">
-            <h1 class="title">Cálculo de uso de Tinta por metro quadrado</h1>
-            <h2 class="subtitle">Qual a dimensão da àrea que pretende pintar?</h2>
-            <h3 class="description">Nos campos abaixo, informe em metros, altura e a largura da àrea onde será pintada</h3>
-        </div>
-        <div class="inputs">
-            <form method="post" enctype="multipart/form-data" action="<?php $_SERVER['PHP_SELF']?>">
-                <?php
-                    if(isset($_POST)){
-                        $altura = isset($_POST['altura']) ? $_POST['altura']:false;
-                        $largura = isset($_POST['largura']) ? $_POST['largura']:false;
-                        $qt_janela = isset($_POST['janela']) ? $_POST['janela']:false;
-                        $qt_porta = isset($_POST['porta']) ? $_POST['porta']:false;
-
-                        $res_alt_largura = alturaLargura($largura, $altura);
-                        $menos_porta_janela =  calculoMenosPortaJanela($res_alt_largura, $qt_janela, $qt_porta);
-                    }
-                ?>
-                <div class="content">                   
-                    <span>Altura: </span><input type="text" name="altura" value="0" maxlength="4" ><br>                   
-                    <span>Largura: </span><input type="text" name="largura" value="0" maxlength="4"><br>   
-
-                    <h4>Esses valores seram retirados do resultado:</h4>
-                    <span>Quantidade de janelas(s): </span>
-                    <select name="janela">
-                        <option value="0">0</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                    </select><br>
-                    <span>Quantidade de porta(s): </span>
-                    <select name="porta">
-                        <option value="0">0</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                    </select><br>
-                    <input class="btn-send" type="submit">
-                </div>
-            </form>
-        </div>
-        <hr>
-        <div class="result">
-            <h5>Quantidade em metros <?php echo $menos_porta_janela ;?> m² da àrea a ser pintada por demão</h5>
-            <h5><?php echo lataQuePreciso($menos_porta_janela); ?></h5><br>
-            <!-- <?php echo var_dump($alturaLargura);?> -->
-            <!-- echo 'menos porta e janela '. $menos_porta_janela.'<br>';
-    
-            echo'total de metros sem desconto ' . $res_alt_largura .'<br>';
-    
-            echo lataQuePreciso($menos_porta_janela); -->
-        
-        </div> 
+<div class="container">    
+    <div class="title-content">
+        <h1 class="title">Cálculo de uso de Tinta por metro quadrado</h1>
+        <h2 class="subtitle">Qual a dimensão da àrea que pretende pintar?</h2>
+        <h3 class="description">Nos campos abaixo, informe em metros, altura e a largura da àrea onde será pintada</h3>
     </div>
+    <div class="inputs">
+    <form method="post" enctype="multipart/form-data" action="<?php $_SERVER['PHP_SELF']?>">
+    <?php
+        if(isset($_POST)){
+            $altura = isset($_POST['altura']) ? $_POST['altura']:false;
+            $largura = isset($_POST['largura']) ? $_POST['largura']:false;
+            $qt_janela = isset($_POST['janela']) ? $_POST['janela']:false;
+            $qt_porta = isset($_POST['porta']) ? $_POST['porta']:false;
+
+            $res_alt_largura = alturaLargura($largura, $altura);
+            $menos_porta_janela =  calculoMenosPortaJanela($res_alt_largura, $qt_janela, $qt_porta);
+            $permitido = permitidoCalcular($res_alt_largura);
+            $var_lataquepreciso = lataQuePreciso($menos_porta_janela);
+            
+        }
+    ?>
+    <div class="content">  
+        <div class="item-alt-lar">
+            <div class="alt-lar">            
+                <span>Altura: </span>
+            </div>
+            <input type="text" name="altura" value="0"  onkeypress="handleNumber(event, ' {-7,3} ')" size=25>                   
+        </div>
+        <div class="item-alt-lar">
+            <div class="alt-lar">            
+                <span>Largura: </span>
+            </div>
+            <input type="text" name="largura" value="0"  onkeypress="handleNumber(event, ' {-7,3} ')" size=25>                  
+        </div>        
+
+        <h4>Esses valores seram retirados do resultado:</h4>
+        <div class="item-jan-por">
+            <div class="jan-porta">
+                <span>Quantidade de janelas(s): </span>
+            </div>
+            <select name="janela">
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+            </select>
+        </div>
+        <div class="item-jan-por">
+            <div class="jan-porta">
+                <span>Quantidade de porta(s): </span>
+            </div>            
+            <select name="porta">
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+            </select><br>
+        </div>
+        <input class="btn-send" type="submit">
+    </div>
+    </form>
+    </div>
+    <hr>
+    <div class="result">
+        <h5>Quantidade em metros <?php echo $menos_porta_janela ;?> m² da àrea a ser pintada por demão</h5>
+        <?php 
+        if($permitido){
+            echo $permitido;
+        }
+        elseif($var_lataquepreciso){
+            echo $var_lataquepreciso;
+        }
+        ?>
+    
+    </div> 
+</div>
         
 </body>
 </html>

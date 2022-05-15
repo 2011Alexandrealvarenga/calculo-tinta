@@ -1,6 +1,4 @@
 <?php 
-
-
 function alturaLargura($largura, $altura){    
     return $largura * $altura;
 }
@@ -16,20 +14,13 @@ function permitidoCalcular($res_alt_largura){
     $min = 1.0;
     $max = 15;
 
-
-    // se é menor que 1 metro ou maior que 15 metros
-    if (($res_alt_largura > $min) and ($res_alt_largura < $max)){   
-    //  se permitido calcular
-        return $res_alt_largura;
-    }
-    if (($res_alt_largura >= $max) or ($res_alt_largura <= $min)){              
+    if (($res_alt_largura <= $min) or ($res_alt_largura >= $max)){              
         return 'Informe um valor maior que 1 e menor que 15 m² <br>';              
     }    
 }
 
 function lataQuePreciso($menos_porta_janela){
     $ml_metro = 0.2;
-    // $ml_metro = 0;
 
     $ml_metro_preciso =  $menos_porta_janela * $ml_metro;
     if($ml_metro_preciso == 0){
@@ -37,23 +28,21 @@ function lataQuePreciso($menos_porta_janela){
     }
     elseif(($ml_metro_preciso >= 0.1) and ($ml_metro_preciso <= 0.5)){
 
-        return 'Preciso de 1 lata de 0,5 Litro ' . '<br>';
+        return 'Vou precisar de 1 lata de 0,5 Litro';
     }
     elseif (($ml_metro_preciso >= 0.6) and ($ml_metro_preciso <= 2.5)){
-        return 'Preciso de 1 lata de 2,5 Litros <br>';
+        return 'Vou precisar de 1 lata de 2,5 Litros';
     }
     elseif (($ml_metro_preciso >= 2.6) and ($ml_metro_preciso <= 3.6)){
-        return 'Preciso de 1 lata de 3,6 Litros <br>';
+        return 'Vou precisar de 1 lata de 3,6 Litros';
     }
     elseif (($ml_metro_preciso >= 2.6) and ($ml_metro_preciso <= 3.6)){
-        return 'Preciso de 1 lata de 3,6 Litros <br>';
+        return 'Vou precisar de 1 lata de 3,6 Litros';
     }
     elseif (($ml_metro_preciso >= 3.7) and ($ml_metro_preciso <= 4.1)){
-        return 'Preciso de 1 lata de 3,6 Litros + 1 lata 0,5 litros <br>';
+        return 'Insera a metragem entre 1 e 15 metros';
     }
-    else{
-        return 'voce vai precisar de uma lata de 6,1 lireoa <br>';
-    }
+
 
 }
 
