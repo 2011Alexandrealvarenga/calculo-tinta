@@ -1,0 +1,47 @@
+h1, h2, h3, h4, h5, h6, p, span {
+    padding: 0;
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+}
+h1, h2, h3, h4, h5, h6{
+    margin: 10px 0;
+}
+body {
+    background: #f9f9f9;
+    display: flex;
+    justify-content: center;
+}
+body .container {
+    background: #fff;
+    border: 1px solid #090909;
+    padding: 20px;
+}
+h1.title{
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    margin: 10px 0;
+}
+.inputs form {
+    justify-content: center;
+    display: flex;
+}
+.inputs form .content {
+    width: 80%;
+    background: #f9f9f9;
+}
+.inputs form .content {
+    padding: 14px;
+}
+input[type="text"] {
+    margin-bottom: 10px;
+}
+.inputs form .content .btn-send {
+    background: #000;
+    color: #fff;
+    margin-top: 14px;
+    width: 100px;
+    border-radius: 14px;
+}
+hr{
+    margin-bottom: 24px;
+}
